@@ -40,14 +40,17 @@ public class PlayerZoneTracker {
 
             if (isInZone && !wasInZone) {
                 playerZoneState.put(uuid, true);
-                player.displayClientMessage(Component.literal("§c§l[!] §aYou entered a §cPvP Zone§a. PvP is enabled!"), true);
+                player.displayClientMessage(
+                        Component.literal("§c§l⚠ NO MAN'S LAND ⚠ §7| §cYou've entered §4No Man's Land§c. Rules not enforced past this point!"),
+                        true
+                );
                 player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
-                    SoundEvents.NOTE_BLOCK_BANJO, net.minecraft.sounds.SoundSource.PLAYERS, 1.0f, 1.0f);
+                    SoundEvents.WARDEN_HEARTBEAT, net.minecraft.sounds.SoundSource.PLAYERS, 1.0f, 0.8f);
             } else if (!isInZone && wasInZone) {
                 playerZoneState.put(uuid, false);
-                player.displayClientMessage(Component.literal("§b§l[!] §fYou left the §cPvP Zone§f. PvP is now §adisabled§f."), true);
+                player.displayClientMessage(Component.literal("§a§l⚑ SAFE ZONE ⚑ §7| §aYou've left §4No Man's Land§a. Rules are now strictly enforced."), true);
                 player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
-                    SoundEvents.NOTE_BLOCK_BANJO, net.minecraft.sounds.SoundSource.PLAYERS, 1.0f, 0.5f);
+                    SoundEvents.BEACON_AMBIENT, net.minecraft.sounds.SoundSource.PLAYERS, 0.8f, 1.2f);
             }
         }
     }
